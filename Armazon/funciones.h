@@ -24,6 +24,7 @@ public:
     static QStringList separaSaltoLinea(QString str);
     static QStringList separaTab(QString str);
     static bool validarFormato(QString strRevisar, QRegularExpression expRegular);
+    static QString obtenerHoraString();
 };
 
 #endif // FUNCIONES_H

@@ -20,6 +20,7 @@ public:
     int numero;
     Cliente* cliente;
     ListaArticulos* articulos;
+    QString recibo;
 
 }; // Fin Pedido
 

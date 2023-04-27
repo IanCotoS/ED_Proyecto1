@@ -62,3 +62,8 @@ bool Funciones::validarFormato(QString pString, QRegularExpression pExpresionReg
     return match.hasMatch();
 }
 
+QString Funciones::obtenerHoraString(){
+    QDateTime date = QDateTime::currentDateTime();
+    QString formattedTime = date.toString("dd.MM.yyyy hh:mm:ss");
+    return formattedTime;
+}

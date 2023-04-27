@@ -72,9 +72,11 @@ void PedidosThread::cargarEnMemoria(){
                 Cliente * clienteNew = clientes->devuelveCliente(lineas[1]);
                 ListaArticulos * articulosPedidos = procesarArticulos(lineas, str, nombre);
                 if (articulosPedidos != nullptr){
-                    colaPedidos->enqueue(Pedido(lineas[0].toInt(),
-                                         new Cliente(clienteNew->codigo, clienteNew->nombre, clienteNew->prioridad),
-                                         articulosPedidos));
+                    Pedido newPedido = Pedido(lineas[0].toInt(),
+                                              new Cliente(clienteNew->codigo, clienteNew->nombre, clienteNew->prioridad),
+                                              articulosPedidos);
+                    newPedido.recibo += "\r\nEn cola:" + Funciones::obtenerHoraString();
+                    colaPedidos->enqueue(newPedido);
                     QFile::remove(direccionEntrantes + nombre);
                 }
             }
