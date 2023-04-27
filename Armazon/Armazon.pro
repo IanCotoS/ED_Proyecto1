@@ -12,6 +12,7 @@ SOURCES += \
     articulo.cpp \
     cliente.cpp \
     cola.cpp \
+    facturacionthread.cpp \
     funciones.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -22,6 +23,7 @@ HEADERS += \
     articulo.h \
     cliente.h \
     cola.h \
+    facturacionthread.h \
     funciones.h \
     mainwindow.h \
     pedido.h \
