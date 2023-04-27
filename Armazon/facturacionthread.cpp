@@ -8,6 +8,7 @@ void FacturacionThread::realizarFactura(){
         Pedido pedidoListo = colaAlistos->dequeue();
         QString tituloFactura = QString::number(pedidoListo.numero) + "_" + pedidoListo.cliente->codigo + "_" +
                                 Funciones::obtenerHoraString();
+        pedidoListo.recibo += "\r\nFacturación: " + Funciones::obtenerHoraString();
         Funciones::crearArchivo("ArchivosDeTexto\\Facturas\\" + tituloFactura, pedidoListo.recibo);
     }
 }

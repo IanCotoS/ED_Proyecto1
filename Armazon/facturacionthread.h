@@ -5,9 +5,7 @@
 #include <QtCore>
 #include <QDebug>
 #include <QLabel>
-#include <QDir>
-#include <QFile>
-#include <QThread>
+
 #include "articulo.h"
 #include "cliente.h"
 #include "cola.h"
@@ -15,7 +13,7 @@
 #include "funciones.h"
 
 // Clase FacturacionThread
-class FacturacionThread : QThread
+class FacturacionThread : public QThread
 {
 public:
 

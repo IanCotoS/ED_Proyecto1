@@ -8,7 +8,8 @@
 #include <QLabel>
 #include <QDir>
 #include <QFile>
-#include <QThread>
+
+
 #include "articulo.h"
 #include "cliente.h"
 #include "cola.h"
@@ -16,7 +17,7 @@
 #include "funciones.h"
 
 // Clase PedidosThread
-class PedidosThread : QThread
+class PedidosThread : public QThread
 {
 public:
 

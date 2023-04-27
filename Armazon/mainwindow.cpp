@@ -13,8 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     ListaArticulos * articulos = new ListaArticulos();
 
     if (!(clientes->cargarEnMemoria() && articulos->cargarEnMemoria())){
-        delete clientes;
-        delete articulos;
+        delete ui;
     }
 
     // Colas
@@ -30,17 +29,18 @@ MainWindow::MainWindow(QWidget *parent)
     // Threads
     PedidosThread * pedidosThread = new PedidosThread("Pedidos Thread", colaPedidos, clientes, articulos,
                                                      labelPedidosThread, attendingLabelPedidosThread);
-    pedidosThread->run();
+    pedidosThread->start();
 
     FacturacionThread * facturacionThread = new FacturacionThread("Facturacion Thread", colaAlistos, labelFacturacionThread,
                                                                  attendingLabelFacturacionThread);
-    facturacionThread->run();
+    facturacionThread->start();
 
 }
 
 
 MainWindow::~MainWindow()
 {
+    Funciones::crearArchivo("ArchivosDeTexto\\Articulos_Actualizados", articulos->devuelveInfo());
     delete ui;
 }
 
