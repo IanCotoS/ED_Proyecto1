@@ -1,0 +1,3 @@
+001	Pedro Juan	10
+002	María	5
+003	Juan	9
