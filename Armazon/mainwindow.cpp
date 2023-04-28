@@ -56,7 +56,7 @@ MainWindow::MainWindow(QWidget *parent)
                                                      labelPedidosThread, attendingLabelPedidosThread);
     pedidosThread->start();
 
-    controlFabricasThread = new ControlFabricasThread("Control Fabricas Thread", colaParaFabricar, colaFabricando, colaFabricaA,
+    controlFabricasThread = new ControlFabricasThread("Control Fabricas Thread", colaPedidosPrioridad, colaFabricando, colaFabricaA, // Cambiar parametro 2
                                                       colaFabricaB, colaFabricaC, colaFabricaComodin, labelControlFabricasThread,
                                                       attendingLabelControlFabricasThread);
     controlFabricasThread->start();
