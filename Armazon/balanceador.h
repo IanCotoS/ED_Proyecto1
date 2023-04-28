@@ -13,16 +13,12 @@
 class Balanceador: public QThread
 {
 public:
-    Balanceador(QList<Pedido>*colaPedido, Cola<Pedido>*colaAlisto, Cola<Pedido>*colaFabricaA,
-    Cola<Pedido>*colaFabricaB, Cola<Pedido>*colaFabricaC, Cola<Pedido>*colaFabricaComodin,
+    Balanceador(QList<Pedido>*colaPedido, Cola<Pedido>*colaAlisto, Cola<Pedido>*colaFabricando,
                 ListaArticulos*listaInventario, QLabel* label, QLabel* attendingLabel){
         running=false;
         this->colaPedido=colaPedido;
         this->colaAlisto=colaAlisto;
-        this->colaFabricaA=colaFabricaA;
-        this->colaFabricaB=colaFabricaB;
-        this->colaFabricaC=colaFabricaC;
-        this->colaFabricaComodin=colaFabricaComodin;
+        this->colaFabricando=colaFabricando;
         this->listaInventario=listaInventario;
         this->label=label;
         this->attendingLabel=attendingLabel;
@@ -39,15 +35,10 @@ public:
                     Pedido pedidoB= colaPedido->at(i);
                     if (pedidoB.cliente->prioridad==10){
                         Articulo* tmp=NULL;
-                        QList<QString> listaFaltantes;
-                        bool faltaA=false;
-                        bool faltaB=false;
-                        bool faltaC=false;
                         for(int y=0;y<pedidoB.articulos->cantidad;y++) {
                             tmp=pedidoB.articulos->devuelveArticuloPos(y);
 
                             if (tmp->cantidadComparable-listaInventario->devuelveArticulo(tmp->codigo)->cantidad>=1){
-                                listaFaltantes.append(tmp->codigo);
                                 tmp->cantidadComparable=tmp->cantidadComparable-listaInventario->devuelveArticulo(tmp->codigo)->cantidad;
                                 listaInventario->devuelveArticulo(tmp->codigo)->cantidad=0;
                             }
@@ -55,63 +46,26 @@ public:
                                 listaInventario->devuelveArticulo(tmp->codigo)->cantidad=listaInventario->devuelveArticulo(tmp->codigo)->cantidad-tmp->cantidad;
                                 tmp->cantidadComparable=0;
                             }
-                            if (listaFaltantes.empty()==true){
+                            if (pedidoB.articulos->estaListo()==true){
                                 colaAlisto->enqueue(pedidoB);
                                 colaPedido->removeAt(i);
                             }
                             else{
-                                for(int x=0;x<listaFaltantes.size();x++){
-                                    if (listaInventario->devuelveArticulo(listaFaltantes.at(x))->categoria=="A"){
-                                        faltaA=true;
-                                    }
-                                    else{
-                                        if(listaInventario->devuelveArticulo(listaFaltantes.at(x))->categoria=="B"){
-                                            faltaB=true;
-                                        }
-                                        else{
-                                            if (listaInventario->devuelveArticulo(listaFaltantes.at(x))->categoria=="C"){
-                                                faltaC=true;
-                                            }
-                                        }
-                                    }
-                                }
-                                if(faltaA==true){
-                                    if(colaFabricaA->size()<=colaFabricaComodin->size()){
-                                       colaFabricaA->enqueue(pedidoB);
-                                    }else{
-                                       colaFabricaComodin->enqueue(pedidoB);
-                                    }
-                                }
-                                else{
-                                    if (faltaB==true){
-                                       if(colaFabricaB->size()<=colaFabricaComodin->size()){
-                                            colaFabricaB->enqueue(pedidoB);
-                                       }else{
-                                            colaFabricaComodin->enqueue(pedidoB);
-                                       }
-                                    }
-                                    else{
-                                        if(faltaC==true){
-                                            colaFabricaC->enqueue(pedidoB);
-                                        }
-                                    }
-                                }
+                                colaFabricando->enqueue(pedidoB);
                                 colaPedido->removeAt(i);
                             }
 
                         }
                     }
-                    else{
+                }
+                for (int i=0; i<colaPedido->size();i++){
+                    Pedido pedidoB= colaPedido->at(i);
+                    if (pedidoB.cliente->prioridad!=10){
                         Articulo* tmp=NULL;
-                        QList<QString> listaFaltantes;
-                        bool faltaA=false;
-                        bool faltaB=false;
-                        bool faltaC=false;
                         for(int y=0;y<pedidoB.articulos->cantidad;y++) {
                             tmp=pedidoB.articulos->devuelveArticuloPos(y);
 
                             if (tmp->cantidadComparable-listaInventario->devuelveArticulo(tmp->codigo)->cantidad>=1){
-                                listaFaltantes.append(tmp->codigo);
                                 tmp->cantidadComparable=tmp->cantidadComparable-listaInventario->devuelveArticulo(tmp->codigo)->cantidad;
                                 listaInventario->devuelveArticulo(tmp->codigo)->cantidad=0;
                             }
@@ -119,47 +73,12 @@ public:
                                 listaInventario->devuelveArticulo(tmp->codigo)->cantidad=listaInventario->devuelveArticulo(tmp->codigo)->cantidad-tmp->cantidad;
                                 tmp->cantidadComparable=0;
                             }
-                            if (listaFaltantes.empty()==true){
+                            if (pedidoB.articulos->estaListo()==true){
                                 colaAlisto->enqueue(pedidoB);
                                 colaPedido->removeAt(i);
                             }
                             else{
-                                for(int x=0;x<listaFaltantes.size();x++){
-                                    if (listaInventario->devuelveArticulo(listaFaltantes.at(x))->categoria=="A"){
-                                        faltaA=true;
-                                    }
-                                    else{
-                                        if(listaInventario->devuelveArticulo(listaFaltantes.at(x))->categoria=="B"){
-                                            faltaB=true;
-                                        }
-                                        else{
-                                            if (listaInventario->devuelveArticulo(listaFaltantes.at(x))->categoria=="C"){
-                                                faltaC=true;
-                                            }
-                                        }
-                                    }
-                                }
-                                if(faltaA==true){
-                                    if(colaFabricaA->size()<=colaFabricaComodin->size()){
-                                        colaFabricaA->enqueue(pedidoB);
-                                    }else{
-                                        colaFabricaComodin->enqueue(pedidoB);
-                                    }
-                                }
-                                else{
-                                    if (faltaB==true){
-                                        if(colaFabricaB->size()<=colaFabricaComodin->size()){
-                                            colaFabricaB->enqueue(pedidoB);
-                                        }else{
-                                            colaFabricaComodin->enqueue(pedidoB);
-                                        }
-                                    }
-                                    else{
-                                        if(faltaC==true){
-                                            colaFabricaC->enqueue(pedidoB);
-                                        }
-                                    }
-                                }
+                                colaFabricando->enqueue(pedidoB);
                                 colaPedido->removeAt(i);
                             }
 
@@ -178,10 +97,7 @@ private:
     bool running;
     QList<Pedido>*colaPedido;
     Cola<Pedido>*colaAlisto;
-    Cola<Pedido>*colaFabricaA;
-    Cola<Pedido>*colaFabricaB;
-    Cola<Pedido>*colaFabricaC;
-    Cola<Pedido>*colaFabricaComodin;
+    Cola<Pedido>*colaFabricando;
     ListaArticulos* listaInventario;
     QLabel* label;
     QLabel* attendingLabel;
