@@ -46,12 +46,14 @@ public:
                         for(int y=0;y<pedidoB.articulos->cantidad;y++) {
                             tmp=pedidoB.articulos->devuelveArticuloPos(y);
 
-                            if (listaInventario->devuelveArticulo(tmp->codigo)->cantidad-tmp->cantidad<0){
+                            if (tmp->cantidadComparable-listaInventario->devuelveArticulo(tmp->codigo)->cantidad>=1){
                                 listaFaltantes.append(tmp->codigo);
+                                tmp->cantidadComparable=tmp->cantidadComparable-listaInventario->devuelveArticulo(tmp->codigo)->cantidad;
                                 listaInventario->devuelveArticulo(tmp->codigo)->cantidad=0;
                             }
                             else{
                                 listaInventario->devuelveArticulo(tmp->codigo)->cantidad=listaInventario->devuelveArticulo(tmp->codigo)->cantidad-tmp->cantidad;
+                                tmp->cantidadComparable=0;
                             }
                             if (listaFaltantes.empty()==true){
                                 colaAlisto->enqueue(pedidoB);
@@ -75,18 +77,18 @@ public:
                                 }
                                 if(faltaA==true){
                                     if(colaFabricaA->size()<=colaFabricaComodin->size()){
-                                        colaFabricaA->enqueue(pedidoB);
+                                       colaFabricaA->enqueue(pedidoB);
                                     }else{
-                                        colaFabricaComodin->enqueue(pedidoB);
+                                       colaFabricaComodin->enqueue(pedidoB);
                                     }
                                 }
                                 else{
                                     if (faltaB==true){
-                                        if(colaFabricaB->size()<=colaFabricaComodin->size()){
+                                       if(colaFabricaB->size()<=colaFabricaComodin->size()){
                                             colaFabricaB->enqueue(pedidoB);
-                                        }else{
+                                       }else{
                                             colaFabricaComodin->enqueue(pedidoB);
-                                        }
+                                       }
                                     }
                                     else{
                                         if(faltaC==true){
@@ -108,12 +110,14 @@ public:
                         for(int y=0;y<pedidoB.articulos->cantidad;y++) {
                             tmp=pedidoB.articulos->devuelveArticuloPos(y);
 
-                            if (listaInventario->devuelveArticulo(tmp->codigo)->cantidad-tmp->cantidad<0){
+                            if (tmp->cantidadComparable-listaInventario->devuelveArticulo(tmp->codigo)->cantidad>=1){
                                 listaFaltantes.append(tmp->codigo);
+                                tmp->cantidadComparable=tmp->cantidadComparable-listaInventario->devuelveArticulo(tmp->codigo)->cantidad;
                                 listaInventario->devuelveArticulo(tmp->codigo)->cantidad=0;
                             }
                             else{
                                 listaInventario->devuelveArticulo(tmp->codigo)->cantidad=listaInventario->devuelveArticulo(tmp->codigo)->cantidad-tmp->cantidad;
+                                tmp->cantidadComparable=0;
                             }
                             if (listaFaltantes.empty()==true){
                                 colaAlisto->enqueue(pedidoB);
@@ -160,12 +164,9 @@ public:
                             }
 
                         }
-
                     }
-
                 }
             }
-
 
             QThread::sleep(1);
         }
