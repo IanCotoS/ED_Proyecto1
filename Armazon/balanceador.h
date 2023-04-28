@@ -63,9 +63,38 @@ public:
                                         faltaA=true;
                                     }
                                     else{
-                                        if()
+                                        if(listaInventario->devuelveArticulo(listaFaltantes.at(x))->categoria=="B"){
+                                            faltaB=true;
+                                        }
+                                        else{
+                                            if (listaInventario->devuelveArticulo(listaFaltantes.at(x))->categoria=="C"){
+                                                faltaC=true;
+                                            }
+                                        }
                                     }
                                 }
+                                if(faltaA==true){
+                                    if(colaFabricaA->size()<=colaFabricaComodin->size()){
+                                       colaFabricaA->enqueue(pedidoB);
+                                    }else{
+                                       colaFabricaComodin->enqueue(pedidoB);
+                                    }
+                                }
+                                else{
+                                    if (faltaB==true){
+                                       if(colaFabricaB->size()<=colaFabricaComodin->size()){
+                                            colaFabricaB->enqueue(pedidoB);
+                                       }else{
+                                            colaFabricaComodin->enqueue(pedidoB);
+                                       }
+                                    }
+                                    else{
+                                        if(faltaC==true){
+                                            colaFabricaC->enqueue(pedidoB);
+                                        }
+                                    }
+                                }
+                                colaPedido->removeAt(i);
                             }
 
                         }
