@@ -5,7 +5,6 @@
 #include <QtCore>
 #include <QDebug>
 #include <QLabel>
-#include <QRandomGenerator>
 
 #include "articulo.h"
 #include "cliente.h"

@@ -9,20 +9,25 @@ void ControlFabricasThread::mandarAFabricar()
         while (tmp != NULL){
             if (!tmp->articulo->estaListo()){
                 QString categoria = tmp->articulo->categoria;
-                int valor = QRandomGenerator::global()->bounded(3);
-                if (valor == 0){
-                    colaFabricaComodin->enqueue((*tmp->articulo));
-                }
-                else if (categoria == "A"){
-                    colaFabricaA->enqueue((*tmp->articulo));
+                if (categoria == "A"){
+                    if (colaFabricaComodin->size() < colaFabricaA->size()){
+                        colaFabricaComodin->enqueue((*tmp->articulo));
+                    }
+                    else{
+                        colaFabricaA->enqueue((*tmp->articulo));
+                    }
                 }
                 else if (categoria == "B"){
-                    colaFabricaB->enqueue((*tmp->articulo));
+                    if (colaFabricaComodin->size() < colaFabricaA->size()){
+                        colaFabricaComodin->enqueue((*tmp->articulo));
+                    }
+                    else{
+                        colaFabricaB->enqueue((*tmp->articulo));
+                    }
                 }
                 else{
                     colaFabricaC->enqueue((*tmp->articulo));
                 }
-
             }
             tmp = tmp->siguiente;
         }
