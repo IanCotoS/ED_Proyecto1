@@ -76,7 +76,12 @@ void PedidosThread::cargarEnMemoria(){
                                               new Cliente(clienteNew->codigo, clienteNew->nombre, clienteNew->prioridad),
                                               articulosPedidos);
                     newPedido.recibo += "\r\nEn cola:" + Funciones::obtenerHoraString();
-                    colaPedidos->enqueue(newPedido);
+                    if (clienteNew->prioridad == 10){
+                        colaPedidosPrioridad->enqueue(newPedido);
+                    }
+                    else{
+                        colaPedidosNormales->enqueue(newPedido);
+                    }
                     QFile::remove(direccionEntrantes + nombre);
                 }
             }

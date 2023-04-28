@@ -22,13 +22,14 @@ class PedidosThread : public QThread
 public:
 
     // Constructor
-    PedidosThread(QString id, Cola<Pedido>* colaPedidos, ListaClientes * clientes,
+    PedidosThread(QString id, Cola<Pedido>* colaPedidosPrioridad, Cola<Pedido>* colaPedidosNormales, ListaClientes * clientes,
                   ListaArticulos * articulos, QLabel* label, QLabel* attendingLabel){
         running = false;
         this->id = id;
         this->label = label;
         this->attendingLabel = attendingLabel;
-        this->colaPedidos = colaPedidos;
+        this->colaPedidosPrioridad = colaPedidosPrioridad;
+        this->colaPedidosNormales = colaPedidosNormales;
         this->clientes = clientes;
         this->articulos = articulos;
     }
@@ -42,7 +43,8 @@ private:
     // Atributos
     QString id;
     bool running;
-    Cola<Pedido> * colaPedidos;
+    Cola<Pedido> * colaPedidosPrioridad;
+    Cola<Pedido>* colaPedidosNormales;
     ListaArticulos * articulos;
     ListaClientes * clientes;
     QLabel * label;

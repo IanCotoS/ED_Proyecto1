@@ -22,13 +22,12 @@ class FabricasThread : public QThread
 public:
 
     // Constructor
-    FabricasThread(QString id, QString categoria, Cola<Pedido>* colaParaFabricacion, Cola<Pedido>* colaFabrica,
+    FabricasThread(QString id, Cola<Articulo>* colaEnFabrica,
                    QLabel* label, QLabel* attendingLabel){
         running = false;
         this->id = id;
-        this->categoria = categoria;
-        this->colaParaFabricacion = colaParaFabricacion;
-        this->colaFabrica = colaFabrica;
+        this->tiempoEnCola = 0;
+        this->colaEnFabrica = colaEnFabrica;
         this->label = label;
         this->attendingLabel = attendingLabel;
     }
@@ -41,10 +40,9 @@ public:
 private:
     // Atributos
     QString id;
-    QString categoria  ;
+    int tiempoEnCola;
     bool running;
-    Cola<Pedido> * colaParaFabricacion;
-    Cola<Pedido>* colaFabrica;
+    Cola<Articulo>* colaEnFabrica;
     QLabel * label;
     QLabel * attendingLabel;
 

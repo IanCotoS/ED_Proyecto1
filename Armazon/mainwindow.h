@@ -9,6 +9,8 @@
 #include "pedidosthread.h"
 #include "facturacionthread.h"
 #include "cola.h"
+#include "fabricasthread.h"
+#include "controlfabricasthread.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -24,15 +26,52 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    // Listas
     ListaClientes * clientes;
     ListaArticulos * articulos;
-    Cola<Pedido> * colaPedidos;
+
+    // Colas de pedidos
+    Cola<Pedido> * colaPedidosPrioridad;
+    Cola<Pedido> * colaPedidosNormales;
+    Cola<Pedido> * colaParaFabricar;
+    Cola<Pedido> * colaFabricando;
     Cola<Pedido> * colaAlistos;
+
+    // Colas de artículos (Fabrica)
+    Cola<Articulo> * colaFabricaA;
+    Cola<Articulo> * colaFabricaB;
+    Cola<Articulo> * colaFabricaC;
+    Cola<Articulo> * colaFabricaComodin;
+
+    // Labels
     QLabel * labelPedidosThread;
     QLabel * attendingLabelPedidosThread;
+
+    QLabel * labelFabricaAThread;
+    QLabel * attendingLabelFabricaAThread;
+
+    QLabel * labelFabricaBThread;
+    QLabel * attendingLabelFabricaBThread;
+
+    QLabel * labelFabricaCThread;
+    QLabel * attendingLabelFabricaCThread;
+
+    QLabel * labelFabricaComodinThread;
+    QLabel * attendingLabelFabricaComodinThread;
+
+    QLabel * labelControlFabricasThread;
+    QLabel * attendingLabelControlFabricasThread;
+
     QLabel * labelFacturacionThread;
     QLabel * attendingLabelFacturacionThread;
+
+    // Threads
     PedidosThread * pedidosThread;
+    ControlFabricasThread * controlFabricasThread;
+    FabricasThread * fabricaAThread;
+    FabricasThread * fabricaBThread;
+    FabricasThread * fabricaCThread;
+    FabricasThread * fabricaComodinThread;
     FacturacionThread * facturacionThread;
 
 
