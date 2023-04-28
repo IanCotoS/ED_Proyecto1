@@ -76,7 +76,7 @@ void PedidosThread::cargarEnMemoria(){
                                               new Cliente(clienteNew->codigo, clienteNew->nombre, clienteNew->prioridad),
                                               articulosPedidos);
                     newPedido.recibo += "\r\nEn cola:" + Funciones::obtenerHoraString();
-                    colaPedidos->enqueue(newPedido);
+                    colaPedido->append(newPedido);
                     QFile::remove(direccionEntrantes + nombre);
                 }
             }

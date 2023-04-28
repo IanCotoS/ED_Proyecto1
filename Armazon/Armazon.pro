@@ -10,22 +10,26 @@ CONFIG += c++17
 
 SOURCES += \
     articulo.cpp \
+    balanceador.cpp \
     cliente.cpp \
     cola.cpp \
     facturacionthread.cpp \
     funciones.cpp \
     main.cpp \
     mainwindow.cpp \
+    paquetefabrica.cpp \
     pedido.cpp \
     pedidosthread.cpp
 
 HEADERS += \
     articulo.h \
+    balanceador.h \
     cliente.h \
     cola.h \
     facturacionthread.h \
     funciones.h \
     mainwindow.h \
+    paquetefabrica.h \
     pedido.h \
     pedidosthread.h
 

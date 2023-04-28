@@ -8,7 +8,7 @@
 #include <QLabel>
 #include <QDir>
 #include <QFile>
-
+#include <QList>
 
 #include "articulo.h"
 #include "cliente.h"
@@ -22,13 +22,13 @@ class PedidosThread : public QThread
 public:
 
     // Constructor
-    PedidosThread(QString id, Cola<Pedido>* colaPedidos, ListaClientes * clientes,
+    PedidosThread(QString id, QList<Pedido>* colaPedido, ListaClientes * clientes,
                   ListaArticulos * articulos, QLabel* label, QLabel* attendingLabel){
         running = false;
         this->id = id;
         this->label = label;
         this->attendingLabel = attendingLabel;
-        this->colaPedidos = colaPedidos;
+        this->colaPedido = colaPedido;
         this->clientes = clientes;
         this->articulos = articulos;
     }
@@ -42,7 +42,7 @@ private:
     // Atributos
     QString id;
     bool running;
-    Cola<Pedido> * colaPedidos;
+    QList<Pedido> * colaPedido;
     ListaArticulos * articulos;
     ListaClientes * clientes;
     QLabel * label;
