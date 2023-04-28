@@ -18,7 +18,7 @@ void FabricasThread::fabricando()
         ListaArticulos * listaArticulosEvaluar = pedidoEvaluar.articulos;
         for (int pos = 0; pos < listaArticulosEvaluar->cantidad; pos++){
             Articulo * articuloEvaluar = listaArticulosEvaluar->devuelveArticuloPos(pos);
-            if (articuloEvaluar->categoria == tipo){
+            if (articuloEvaluar->categoria == categoria){
                 int tiempoFabricacion = articuloEvaluar->cantidadComparable * articuloEvaluar->tiempoFabricacionSegundos;
                 QThread::sleep(tiempoFabricacion);
             }
