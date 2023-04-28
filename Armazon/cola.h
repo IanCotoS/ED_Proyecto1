@@ -20,6 +20,12 @@ public:
         return m_items.takeFirst();
     }
 
+    T peek(){
+        if (!m_items.isEmpty()){
+        return m_items.constFirst();
+        }
+    }
+
     bool isEmpty() const
     {
         return m_items.isEmpty();
