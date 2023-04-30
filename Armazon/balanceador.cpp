@@ -8,6 +8,7 @@ void Balanceador::evaluaNormales()
         for (int i=0; i<colaPedidoNormales->size();i++){
             Pedido pedidoB= colaPedidoNormales->dequeue();
             qInfo() << pedidoB.devuelveInfo();
+            pedidoB.recibo+="\nBalanceador: "+Funciones::obtenerHoraString();
             Articulo* tmp=NULL;
             for(int y=0;y<pedidoB.articulos->cantidad;y++) {
                 tmp=pedidoB.articulos->devuelveArticuloPos(y);
@@ -37,6 +38,7 @@ void Balanceador::evaluaPrioridad()
         for (int i=0; i<colaPedidoPrioridad->size();i++){
             Pedido pedidoB= colaPedidoPrioridad->dequeue();
             qInfo() << pedidoB.devuelveInfo();
+            pedidoB.recibo+="\nBalanceador: "+Funciones::obtenerHoraString();
             Articulo* tmp=NULL;
             for(int y=0;y<pedidoB.articulos->cantidad;y++) {
                 tmp=pedidoB.articulos->devuelveArticuloPos(y);
