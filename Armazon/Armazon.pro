@@ -15,6 +15,7 @@ SOURCES += \
     cliente.cpp \
     cola.cpp \
     controlfabricasthread.cpp \
+    empacador.cpp \
     fabricasthread.cpp \
     facturacionthread.cpp \
     funciones.cpp \
@@ -30,6 +31,7 @@ HEADERS += \
     cliente.h \
     cola.h \
     controlfabricasthread.h \
+    empacador.h \
     fabricasthread.h \
     facturacionthread.h \
     funciones.h \
