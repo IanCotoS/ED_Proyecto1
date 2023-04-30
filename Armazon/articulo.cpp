@@ -1,4 +1,5 @@
 
+
 #include "articulo.h"
 
 // Variables
