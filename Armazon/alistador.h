@@ -17,6 +17,8 @@ class Alistador : public QThread
 public:
     QString estado;
     Pedido*pedidoAli;
+    Pedido*pedidoListo;
+    bool listo;
 
     Alistador(int id){
         running=true;
@@ -25,8 +27,9 @@ public:
         this->matrizMieo={"A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
                             "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U","V", "W", "X", "Y", "Z"};
         estado="Inactivo";
-        pedidoAli=NULL;
+        pedidoAli=nullptr;
         listo=false;
+        pedidoListo=nullptr;
     }
     int recorrido(QString ubicacion){
         QString space{" "};
@@ -53,7 +56,7 @@ public:
     bool pause() { return running = false; };
     void run(){
         while (running==true){
-            if (pedidoAli!=NULL){
+            if (pedidoAli!=nullptr){
                 listo=false;
                 alistarPedido();
                 while (tiempoPedido > 0)
@@ -62,10 +65,10 @@ public:
                     tiempoPedido--;
                 }
                 listo=true;
-                pedidoAli=NULL;
-
+                pedidoListo=pedidoAli;
+                pedidoAli=nullptr;
             }
-
+            QThread::sleep(1);
         }
     }
 
@@ -75,7 +78,6 @@ private:
     int tiempoPedido;
     bool running;
     QStringList matrizMieo;
-    bool listo;
 
 
 };
@@ -100,6 +102,21 @@ public:
                 alistador->estado="Activo";
                 alistador->pedidoAli=&pedidoPorAlistar;
                 alistador->run();
+                if(alistador->listo==true){
+                    pedidosListos->enqueue(*alistador->pedidoListo);
+                    alistador->pedidoListo=nullptr;
+                    colaAlistadores->enqueue(alistador);
+                    alistador->estado="Inactivo";
+                }
+                else{
+                    Pedido pedidoPorAlistar2= pedidosPorAlistar->dequeue();
+                    Alistador*alistador2=colaAlistadores->dequeue();
+                    alistador2->estado="Activo";
+                    alistador2->pedidoAli=&pedidoPorAlistar2;
+                    alistador2->run();
+                }
+
+
 
 
             }
