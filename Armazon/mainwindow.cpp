@@ -33,6 +33,9 @@ MainWindow::MainWindow(QWidget *parent)
     labelPedidosThread = new QLabel();
     attendingLabelPedidosThread = new QLabel();
 
+    labelBalanceador = new QLabel();
+    attendingLabelBalanceador = new QLabel();
+
     labelFabricaAThread = new QLabel();
     attendingLabelFabricaAThread = new QLabel();
 
@@ -55,6 +58,10 @@ MainWindow::MainWindow(QWidget *parent)
     pedidosThread = new PedidosThread("Pedidos Thread", colaPedidosPrioridad, colaPedidosNormales, clientes, articulos,
                                                      labelPedidosThread, attendingLabelPedidosThread);
     pedidosThread->start();
+
+    balanceador = new Balanceador("Balanceador Thread", colaPedidosPrioridad, colaPedidosNormales, colaAlistos, colaParaFabricar,
+                                  articulos, labelBalanceador, attendingLabelBalanceador);
+    balanceador->start();
 
     controlFabricasThread = new ControlFabricasThread("Control Fabricas Thread", colaPedidosPrioridad, colaFabricando, colaFabricaA, // Cambiar parametro 2
                                                       colaFabricaB, colaFabricaC, colaFabricaComodin, labelControlFabricasThread,

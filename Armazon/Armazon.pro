@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     articulo.cpp \
+    balanceador.cpp \
     cliente.cpp \
     cola.cpp \
     controlfabricasthread.cpp \
@@ -23,6 +24,7 @@ SOURCES += \
 
 HEADERS += \
     articulo.h \
+    balanceador.h \
     cliente.h \
     cola.h \
     controlfabricasthread.h \

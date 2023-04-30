@@ -11,7 +11,7 @@
 #include "cola.h"
 #include "fabricasthread.h"
 #include "controlfabricasthread.h"
-
+#include "balanceador.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -47,6 +47,9 @@ public:
     QLabel * labelPedidosThread;
     QLabel * attendingLabelPedidosThread;
 
+    QLabel * labelBalanceador;
+    QLabel * attendingLabelBalanceador;
+
     QLabel * labelFabricaAThread;
     QLabel * attendingLabelFabricaAThread;
 
@@ -67,6 +70,7 @@ public:
 
     // Threads
     PedidosThread * pedidosThread;
+    Balanceador * balanceador;
     ControlFabricasThread * controlFabricasThread;
     FabricasThread * fabricaAThread;
     FabricasThread * fabricaBThread;
