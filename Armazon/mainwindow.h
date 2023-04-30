@@ -12,6 +12,7 @@
 #include "fabricasthread.h"
 #include "controlfabricasthread.h"
 #include "balanceador.h"
+#include "alistador.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -36,6 +37,7 @@ public:
     Cola<Pedido> * colaParaFabricar;
     Cola<Pedido> * colaFabricando;
     Cola<Pedido> * colaAlistos;
+    Cola<Pedido> * colaAlistados;
 
     // Colas de artículos (Fabrica)
     Cola<Articulo> * colaFabricaA;
@@ -77,6 +79,7 @@ public:
     FabricasThread * fabricaCThread;
     FabricasThread * fabricaComodinThread;
     FacturacionThread * facturacionThread;
+    ColaAlistadores* colaDeAlisatdores;
 
 
 private:

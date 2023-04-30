@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
     colaParaFabricar = new Cola<Pedido>();
     colaFabricando = new Cola<Pedido>();
     colaAlistos = new Cola<Pedido>();
+    colaAlistados =new Cola<Pedido>();
 
     // Colas (fabrica)
     colaFabricaA = new Cola<Articulo>();
@@ -84,6 +85,9 @@ MainWindow::MainWindow(QWidget *parent)
                                                                  attendingLabelFacturacionThread);
     facturacionThread->start();
 
+
+    colaDeAlisatdores= new ColaAlistadores("Cola de Alistadores", colaAlistos, colaAlistados);
+    colaDeAlisatdores->start();
 }
 
 
