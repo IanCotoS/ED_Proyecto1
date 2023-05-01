@@ -41,7 +41,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     /*
     QPixmap image_colaDeAlistadores= QPixmap(COLADEALISTADORES_PNG).scaled(ui->label_ImagenColaDeAlistadores->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    ui->label_ImagenColaDeAlistadores->setPixmap(image_fabricaExtra);
+    ui->label_ImagenColaDeAlistadores->setPixmap(image_colaDeAlistadores);
 
     QPixmap image_empacador= QPixmap(EMPACADOR_PNG).scaled(ui->label_ImagenEmpacador->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
     ui->label_ImagenEmpacador->setPixmap(image_empacador);
