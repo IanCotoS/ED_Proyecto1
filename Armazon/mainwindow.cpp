@@ -63,6 +63,7 @@ MainWindow::MainWindow(QWidget *parent)
     colaFabricando = new Cola<Pedido>();
     colaAlistos = new Cola<Pedido>();
     colaAlistados =new Cola<Pedido>();
+    colaFactura= new Cola<Pedido>();
 
     // Colas (fabrica)
     colaFabricaA = new Cola<Articulo>();
@@ -98,7 +99,10 @@ MainWindow::MainWindow(QWidget *parent)
     colaDeAlistadores= new ColaAlistadores("Cola de Alistadores", colaAlistos, colaAlistados);
     colaDeAlistadores->start();
 
-    facturacionThread = new FacturacionThread("Facturacion Thread", colaAlistos);
+    empacador = new Empacador("Empacador", colaAlistados, colaFactura);
+    empacador->start();
+
+    facturacionThread = new FacturacionThread("Facturacion Thread", colaFactura);
     facturacionThread->start();
 }
 
@@ -109,4 +113,64 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+
+void MainWindow::on_pushButton_stopBalanceador_clicked()
+{
+    balanceador->pause();
+}
+
+
+void MainWindow::on_pushButton_resumeBalanceador_clicked()
+{
+    balanceador->resume();
+}
+
+
+void MainWindow::on_pushButton_stopFabricaA_clicked()
+{
+    fabricaAThread->pause();
+}
+
+
+void MainWindow::on_pushButton_resumeFabricaA_clicked()
+{
+    fabricaAThread->resume();
+}
+
+
+void MainWindow::on_pushButton_stopFabricaB_clicked()
+{
+    fabricaBThread->pause();
+}
+
+
+void MainWindow::on_pushButton_resumeFabricaB_clicked()
+{
+    fabricaBThread->resume();
+}
+
+
+void MainWindow::on_pushButton_stopFabricaC_clicked()
+{
+    fabricaCThread->pause();
+}
+
+
+void MainWindow::on_pushButton_resumeFabricaC_clicked()
+{
+    fabricaCThread->resume();
+}
+
+
+void MainWindow::on_pushButton_stopEmpacador_clicked()
+{
+    empacador->pause();
+}
+
+
+void MainWindow::on_pushButton_resumeEmpacador_clicked()
+{
+    empacador->resume();
+}
 
