@@ -39,7 +39,6 @@ MainWindow::MainWindow(QWidget *parent)
     QPixmap image_fabricaExtra= QPixmap(FABRICA_PNG).scaled(ui->label_ImagenFabricaExtra->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
     ui->label_ImagenFabricaExtra->setPixmap(image_fabricaExtra);
 
-    /*
     QPixmap image_colaDeAlistadores= QPixmap(COLADEALISTADORES_PNG).scaled(ui->label_ImagenColaDeAlistadores->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
     ui->label_ImagenColaDeAlistadores->setPixmap(image_colaDeAlistadores);
 
@@ -47,8 +46,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->label_ImagenEmpacador->setPixmap(image_empacador);
 
     QPixmap image_factura= QPixmap(FACTURA_PNG).scaled(ui->label_ImagenFactura->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    ui->label_ImagenFactura->setPixmap(image_fabricaExtra);
-    */
+    ui->label_ImagenFactura->setPixmap(image_factura);
+
     // Listas
     clientes = new ListaClientes();
     articulos = new ListaArticulos();

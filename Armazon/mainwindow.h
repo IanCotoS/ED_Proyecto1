@@ -53,7 +53,7 @@ public:
     FabricasThread * fabricaBThread;
     FabricasThread * fabricaCThread;
     FabricasThread * fabricaComodinThread;
-    ColaAlistadores* colaDeAlistadores;
+    ColaAlistadores * colaDeAlistadores;
     FacturacionThread * facturacionThread;
 
 private:
