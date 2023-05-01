@@ -14,7 +14,7 @@ class Balanceador: public QThread
 {
 public:
     Balanceador(QString id, Cola<Pedido>* colaPedidoPrioridad, Cola<Pedido>*colaPedidoNormales, Cola<Pedido>*colaAlisto, Cola<Pedido>*colaFabricando,
-                ListaArticulos*listaInventario, QLabel* label, QLabel* attendingLabel){
+                ListaArticulos*listaInventario){
         running=false;
         this->id=id;
         this->colaPedidoPrioridad=colaPedidoPrioridad;
@@ -22,8 +22,6 @@ public:
         this->colaAlisto=colaAlisto;
         this->colaFabricando=colaFabricando;
         this->listaInventario=listaInventario;
-        this->label=label;
-        this->attendingLabel=attendingLabel;
     }
 
     void evaluaPrioridad();
@@ -41,8 +39,6 @@ private:
     Cola<Pedido>*colaAlisto;
     Cola<Pedido>*colaFabricando;
     ListaArticulos* listaInventario;
-    QLabel* label;
-    QLabel* attendingLabel;
 };
 
 #endif // BALANCEADOR_H

@@ -20,8 +20,7 @@ public:
     // Constructor
     ControlFabricasThread(QString id, Cola<Pedido>* colaParaFabricacion, Cola<Pedido>* colaFabricando,
                           Cola<Articulo>* colaFabricaA, Cola<Articulo>* colaFabricaB,
-                          Cola<Articulo>* colaFabricaC, Cola<Articulo>* colaFabricaComodin,
-                          QLabel* label, QLabel* attendingLabel){
+                          Cola<Articulo>* colaFabricaC, Cola<Articulo>* colaFabricaComodin){
         running = false;
         this->id = id;
         this->colaParaFabricacion = colaParaFabricacion;
@@ -30,8 +29,6 @@ public:
         this->colaFabricaB = colaFabricaB;
         this->colaFabricaC = colaFabricaC;
         this->colaFabricaComodin = colaFabricaComodin;
-        this->label = label;
-        this->attendingLabel = attendingLabel;
     }
 
     // Métodos Thread
@@ -49,8 +46,6 @@ private:
     Cola<Articulo>* colaFabricaB;
     Cola<Articulo>* colaFabricaC;
     Cola<Articulo>* colaFabricaComodin;
-    QLabel * label;
-    QLabel * attendingLabel;
 
     // Declaraciones de métodos
     void mandarAFabricar();

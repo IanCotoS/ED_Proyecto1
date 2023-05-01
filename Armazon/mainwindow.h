@@ -45,31 +45,6 @@ public:
     Cola<Articulo> * colaFabricaC;
     Cola<Articulo> * colaFabricaComodin;
 
-    // Labels
-    QLabel * labelPedidosThread;
-    QLabel * attendingLabelPedidosThread;
-
-    QLabel * labelBalanceador;
-    QLabel * attendingLabelBalanceador;
-
-    QLabel * labelFabricaAThread;
-    QLabel * attendingLabelFabricaAThread;
-
-    QLabel * labelFabricaBThread;
-    QLabel * attendingLabelFabricaBThread;
-
-    QLabel * labelFabricaCThread;
-    QLabel * attendingLabelFabricaCThread;
-
-    QLabel * labelFabricaComodinThread;
-    QLabel * attendingLabelFabricaComodinThread;
-
-    QLabel * labelControlFabricasThread;
-    QLabel * attendingLabelControlFabricasThread;
-
-    QLabel * labelFacturacionThread;
-    QLabel * attendingLabelFacturacionThread;
-
     // Threads
     PedidosThread * pedidosThread;
     Balanceador * balanceador;
@@ -78,9 +53,8 @@ public:
     FabricasThread * fabricaBThread;
     FabricasThread * fabricaCThread;
     FabricasThread * fabricaComodinThread;
+    ColaAlistadores* colaDeAlistadores;
     FacturacionThread * facturacionThread;
-    ColaAlistadores* colaDeAlisatdores;
-
 
 private:
     Ui::MainWindow *ui;
