@@ -55,12 +55,8 @@ public:
     FabricasThread * fabricaBThread;
     FabricasThread * fabricaCThread;
     FabricasThread * fabricaComodinThread;
-<<<<<<< HEAD
     ColaAlistadores * colaDeAlistadores;
-=======
-    ColaAlistadores* colaDeAlistadores;
     Empacador * empacador;
->>>>>>> 622aba2c729ea102a2eaa8377db2fe4d5b2e556a
     FacturacionThread * facturacionThread;
 
 private slots:
