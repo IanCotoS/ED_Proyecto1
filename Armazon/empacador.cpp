@@ -5,13 +5,19 @@ void Empacador::run(){
     running=true;
     while(running){
         if (!colaParaEmpacar->isEmpty()){
-            Pedido pedidoEmpacado=colaParaEmpacar->dequeue();
-            int cantArticulos=pedidoEmpacado.articulos->cantidad;
-            while (cantArticulos>0){
-                QThread::sleep(1);
-                cantArticulos--;
+            qDebug()<<"Tamaño Cola para empacar:";
+            qDebug()<<QString::number(colaParaEmpacar->size());
+            for (int i=0; i<colaParaEmpacar->size();i++){
+                Pedido pedidoEmpacado=colaParaEmpacar->dequeue();
+                int cantArticulos=pedidoEmpacado.articulos->cantidad;
+                while (cantArticulos>0){
+                    QThread::sleep(1);
+                    cantArticulos--;
+                }
+                colaparaFacturar->enqueue(pedidoEmpacado);
             }
-            colaparaFacturar->enqueue(pedidoEmpacado);
+            qDebug()<<"Tamaño cola para facturar";
+                qDebug()<<QString::number(colaparaFacturar->size());
         }
          QThread::sleep(1);
     }

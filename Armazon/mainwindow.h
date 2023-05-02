@@ -55,7 +55,7 @@ public:
     FabricasThread * fabricaBThread;
     FabricasThread * fabricaCThread;
     FabricasThread * fabricaComodinThread;
-    ColaAlistadores * colaDeAlistadores;
+    Alistador * colaDeAlistadores;
     Empacador * empacador;
     FacturacionThread * facturacionThread;
 

@@ -5,6 +5,8 @@
 void FacturacionThread::realizarFactura(){
     if (!colaAlistos->isEmpty())
     {
+        qDebug()<<"Tamaño Cola por Facturar:";
+        qDebug()<<QString::number(colaAlistos->size());
         Pedido pedidoListo = colaAlistos->dequeue();
         QString tituloFactura = QString::number(pedidoListo.numero) + "_" + pedidoListo.cliente->codigo + "_" +
                                 Funciones::obtenerHoraString();

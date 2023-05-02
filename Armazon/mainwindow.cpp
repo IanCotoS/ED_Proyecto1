@@ -96,7 +96,7 @@ MainWindow::MainWindow(QWidget *parent)
     fabricaComodinThread = new FabricasThread("Fabrica Comodin Thread", colaFabricaComodin);
     fabricaComodinThread->start();
 
-    colaDeAlistadores= new ColaAlistadores("Cola de Alistadores", colaAlistos, colaAlistados);
+    colaDeAlistadores= new Alistador("Cola de Alistadores", colaAlistos, colaAlistados);
     colaDeAlistadores->start();
 
     empacador = new Empacador("Empacador", colaAlistados, colaFactura);

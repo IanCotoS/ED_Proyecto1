@@ -16,62 +16,35 @@ class Alistador : public QThread
 {
 public:
     QString estado;
-    Pedido*pedidoAli;
-    Pedido*pedidoListo;
     bool listo;
 
-    Alistador(int id){
+    Alistador(QString id, Cola<Pedido>* pedidoAli,Cola<Pedido>* pedidoListo){
         running=true;
         this->id=id;
         this->tiempoPedido=0;
         this->matrizMieo={"A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
                             "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U","V", "W", "X", "Y", "Z"};
         estado="Inactivo";
-        pedidoAli=nullptr;
+        this->pedidoAli=pedidoAli;
         listo=false;
-        pedidoListo=nullptr;
+        this->pedidoListo=pedidoListo;
     }
     int recorrido(QString ubicacion);
 
-    void alistarPedido();
+    void alistarPedido(Pedido nPedido);
 
     bool resume() { return running = true; };
     bool pause() { return running = false; };
     void run();
 
-
-private:
-    int id;
-    int tiempoPedido;
-    bool running;
-    QStringList matrizMieo;
-
-
-};
-
-class ColaAlistadores : public QThread
-{
-public:
-    ColaAlistadores(QString id, Cola<Pedido>*pedidosPorAlistar, Cola<Pedido>*pedidosListos){
-        this->id=id;
-        this->pedidosPorAlistar=pedidosPorAlistar;
-        this->pedidosListos=pedidosListos;
-        this->colaAlistadores=new Cola<Alistador*>;
-        for(int i=1; i<=6;i++){
-            colaAlistadores->enqueue(new Alistador(i));
-        }
-        running=false;
-    }
-    bool resume() { return running = true; };
-    bool pause() { return running = false; };
-    void run();
 
 private:
     QString id;
-    Cola<Pedido>*pedidosPorAlistar;
-    Cola<Pedido>*pedidosListos;
-    Cola<Alistador*>*colaAlistadores;
+    int tiempoPedido;
     bool running;
+    QStringList matrizMieo;
+    Cola<Pedido>*pedidoAli;
+    Cola <Pedido>*pedidoListo;
 
 
 };
