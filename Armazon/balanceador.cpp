@@ -10,8 +10,7 @@ void Balanceador::evaluaNormales()
             qInfo() << pedidoB.devuelveInfo();
             pedidoB.recibo+="\nBalanceador: "+Funciones::obtenerHoraString();
             NodoArticulo * tmp = pedidoB.articulos->primerNodo;
-            for(int y=0;y<pedidoB.articulos->cantidad;y++) {
-
+            while (tmp != nullptr) {
                 if (tmp->articulo->cantidadComparable-listaInventario->devuelveArticulo(tmp->articulo->codigo)->cantidad>=1){
                     tmp->articulo->cantidadComparable=tmp->articulo->cantidadComparable-listaInventario->devuelveArticulo(tmp->articulo->codigo)->cantidad;
                     listaInventario->devuelveArticulo(tmp->articulo->codigo)->cantidad=0;
@@ -42,8 +41,7 @@ void Balanceador::evaluaPrioridad()
             qInfo() << pedidoB.devuelveInfo();
             pedidoB.recibo+="\nBalanceador: "+Funciones::obtenerHoraString();
             NodoArticulo * tmp = pedidoB.articulos->primerNodo;
-            for(int y=0;y<pedidoB.articulos->cantidad;y++) {
-
+            while (tmp != nullptr) {
                 if (tmp->articulo->cantidadComparable-listaInventario->devuelveArticulo(tmp->articulo->codigo)->cantidad>=1){
                     tmp->articulo->cantidadComparable=tmp->articulo->cantidadComparable-listaInventario->devuelveArticulo(tmp->articulo->codigo)->cantidad;
                     listaInventario->devuelveArticulo(tmp->articulo->codigo)->cantidad=0;
