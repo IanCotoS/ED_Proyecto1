@@ -6,6 +6,8 @@ void Balanceador::evaluaNormales()
     if (!colaPedidoNormales->isEmpty())
     {
         for (int i=0; i<colaPedidoNormales->size();i++){
+            qDebug()<<"Tamaño Cola pedido normal:";
+            qDebug()<<QString::number(colaPedidoNormales->size());
             Pedido pedidoB= colaPedidoNormales->dequeue();
             qInfo() << pedidoB.devuelveInfo();
             pedidoB.recibo+="\nBalanceador: "+Funciones::obtenerHoraString();
@@ -20,15 +22,20 @@ void Balanceador::evaluaNormales()
                         listaInventario->devuelveArticulo(tmp->articulo->codigo)->cantidad-tmp->articulo->cantidad;
                     tmp->articulo->cantidadComparable=0;
                 }
-                if (pedidoB.articulos->estaListo()==true){
-                    colaAlisto->enqueue(pedidoB);
-                }
-                else{
-                    colaFabricando->enqueue(pedidoB);
-                }
                 tmp = tmp->siguiente;
             }
+            if (pedidoB.articulos->estaListo()==true){
+                colaAlisto->enqueue(pedidoB);
+            }
+            else{
+                colaFabricando->enqueue(pedidoB);
+            }
         }
+        qDebug()<<"Tamaño Cola alisto:";
+        qDebug()<<QString::number(colaAlisto->size());
+        qDebug()<<"Tamaño Cola fabricando:";
+        qDebug()<<QString::number(colaFabricando->size());
+
     }
 }
 
@@ -37,6 +44,8 @@ void Balanceador::evaluaPrioridad()
     if (!colaPedidoPrioridad->isEmpty())
     {
         for (int i=0; i<colaPedidoPrioridad->size();i++){
+            qDebug()<<"Tamaño Cola pedio prioridad:";
+            qDebug()<<QString::number(colaPedidoPrioridad->size());
             Pedido pedidoB= colaPedidoPrioridad->dequeue();
             qInfo() << pedidoB.devuelveInfo();
             pedidoB.recibo+="\nBalanceador: "+Funciones::obtenerHoraString();
@@ -51,15 +60,19 @@ void Balanceador::evaluaPrioridad()
                         listaInventario->devuelveArticulo(tmp->articulo->codigo)->cantidad-tmp->articulo->cantidad;
                     tmp->articulo->cantidadComparable=0;
                 }
-                if (pedidoB.articulos->estaListo()==true){
-                    colaAlisto->enqueue(pedidoB);
-                }
-                else{
-                    colaFabricando->enqueue(pedidoB);
-                }
                 tmp = tmp->siguiente;
             }
+            if (pedidoB.articulos->estaListo()==true){
+                colaAlisto->enqueue(pedidoB);
+            }
+            else{
+                colaFabricando->enqueue(pedidoB);
+            }
         }
+        qDebug()<<"Tamaño Cola alisto:";
+        qDebug()<<QString::number(colaAlisto->size());
+        qDebug()<<"Tamaño Cola fabricando:";
+        qDebug()<<QString::number(colaFabricando->size());
     }
 }
 

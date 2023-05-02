@@ -4,6 +4,8 @@
 void ControlFabricasThread::mandarAFabricar()
 {
     if (!colaParaFabricacion->isEmpty()){
+        qDebug()<<"Tamaño Cola para Fabricación:";
+        qDebug()<<QString::number(colaParaFabricacion->size());
         Pedido pedido = colaParaFabricacion->dequeue();
         NodoArticulo * tmp = pedido.articulos->primerNodo;
         pedido.recibo += "\r\nA fabrica:\t" + Funciones::obtenerHoraString() + "\r\nArtículos:";
@@ -59,6 +61,9 @@ void ControlFabricasThread::mandarAFabricar()
         }
         qInfo() << pedido.devuelveInfo();
         colaFabricando->enqueue(pedido);
+        qDebug()<<"Tamaño Cola para Alisto:";
+        qDebug()<<QString::number(colaFabricando->size());
+
     }
 }
 

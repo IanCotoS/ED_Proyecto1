@@ -80,7 +80,7 @@ MainWindow::MainWindow(QWidget *parent)
     balanceador->start();
 
     controlFabricasThread = new ControlFabricasThread("Control Fabricas Thread", colaParaFabricar,
-                                                      colaFabricando, colaFabricaA, colaFabricaB,
+                                                      colaAlistos, colaFabricaA, colaFabricaB,
                                                       colaFabricaC, colaFabricaComodin);
     controlFabricasThread->start();
 
