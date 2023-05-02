@@ -4,6 +4,7 @@
 void ControlFabricasThread::mandarAFabricar()
 {
     if (!colaParaFabricacion->isEmpty()){
+        qInfo() << "Ejecutando " + id + "...";
         qDebug()<<"Tamaño Cola para Fabricación:";
         qDebug()<<QString::number(colaParaFabricacion->size());
         Pedido pedido = colaParaFabricacion->dequeue();
@@ -72,7 +73,6 @@ void ControlFabricasThread::run()
     running = true;
     while (running)
     {
-        qInfo() << "Ejecutando " + id + "...";
         mandarAFabricar();
         QThread::sleep(1);
     }

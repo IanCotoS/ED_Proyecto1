@@ -5,6 +5,7 @@ void Balanceador::evaluaNormales()
 {
     if (!colaPedidoNormales->isEmpty())
     {
+        qInfo() << "Ejecutando " + id + "...";
         for (int i=0; i<colaPedidoNormales->size();i++){
             qDebug()<<"Tamaño Cola pedido normal:";
             qDebug()<<QString::number(colaPedidoNormales->size());
@@ -43,6 +44,7 @@ void Balanceador::evaluaPrioridad()
 {
     if (!colaPedidoPrioridad->isEmpty())
     {
+        qInfo() << "Ejecutando " + id + "...";
         for (int i=0; i<colaPedidoPrioridad->size();i++){
             qDebug()<<"Tamaño Cola pedio prioridad:";
             qDebug()<<QString::number(colaPedidoPrioridad->size());
@@ -80,7 +82,6 @@ void Balanceador::run(){
     running = true;
     while (running)
     {
-        qInfo() << "Ejecutando " + id + "...";
         evaluaPrioridad();
         evaluaNormales();
         QThread::sleep(5);

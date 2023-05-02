@@ -3,15 +3,19 @@
 
 // Métodos
 void FacturacionThread::realizarFactura(){
-    if (!colaAlistos->isEmpty())
+    if (!colaFactura->isEmpty())
     {
+        qInfo() << "Ejecutando " + id + "...";
         qDebug()<<"Tamaño Cola por Facturar:";
-        qDebug()<<QString::number(colaAlistos->size());
-        Pedido pedidoListo = colaAlistos->dequeue();
+        qDebug()<<QString::number(colaFactura->size());
+        Pedido pedidoListo = colaFactura->dequeue();
         QString tituloFactura = QString::number(pedidoListo.numero) + "_" + pedidoListo.cliente->codigo + "_" +
-                                Funciones::obtenerHoraString();
+                                Funciones::obtenerHoraString() + ".txt";
         pedidoListo.recibo += "\r\nFacturación: " + Funciones::obtenerHoraString();
-        Funciones::crearArchivo("ArchivosDeTexto\\Facturas\\" + tituloFactura, pedidoListo.recibo);
+        qInfo() << tituloFactura + pedidoListo.recibo;
+        QString * reciboInfo = &pedidoListo.recibo;
+        tituloFactura.replace(":", ";");
+        Funciones::crearFactura(tituloFactura, reciboInfo);
     }
 }
 
@@ -19,7 +23,6 @@ void FacturacionThread::run(){
     running = true;
     while (running)
     {
-        qInfo() << "Ejecutando " + id + "...";
         realizarFactura();
         QThread::sleep(1);
     }

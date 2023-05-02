@@ -23,8 +23,8 @@ void Alistador::alistarPedido(Pedido nPedido){
 }
 void Alistador::run(){
     while (running==true){
-        qInfo() << "Ejecutando " + id + "...";
         if (!pedidoAli->isEmpty()){
+            qInfo() << "Ejecutando " + id + "...";
             qDebug()<<"Tamaño Cola por alistar:";
             qDebug()<<QString::number(pedidoAli->size());
             for (int i =0; i<pedidoAli->size();i++){

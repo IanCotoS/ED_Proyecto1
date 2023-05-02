@@ -5,6 +5,7 @@ void Empacador::run(){
     running=true;
     while(running){
         if (!colaParaEmpacar->isEmpty()){
+            qInfo() << "Ejecutando " + id + "...";
             qDebug()<<"Tamaño Cola para empacar:";
             qDebug()<<QString::number(colaParaEmpacar->size());
             for (int i=0; i<colaParaEmpacar->size();i++){
@@ -14,10 +15,11 @@ void Empacador::run(){
                     QThread::sleep(1);
                     cantArticulos--;
                 }
+                pedidoEmpacado.recibo += "\r\nEmpacador " + Funciones::obtenerHoraString();
                 colaparaFacturar->enqueue(pedidoEmpacado);
             }
-            qDebug()<<"Tamaño cola para facturar";
-                qDebug()<<QString::number(colaparaFacturar->size());
+            qDebug() << "Tamaño cola para facturar";
+            qDebug() << QString::number(colaparaFacturar->size());
         }
          QThread::sleep(1);
     }

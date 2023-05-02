@@ -4,6 +4,7 @@
 void FabricasThread::fabricando()
 {
     if (!colaEnFabrica->isEmpty()){
+        qInfo() << "Ejecutando " + id + "...";
         NodoArticulo articuloFabricando = colaEnFabrica->dequeue();
         int tiempoAFabricar = articuloFabricando.articulo->tiempoFabricacionSegundos * articuloFabricando.articulo->cantidadComparable;
         QThread::sleep(tiempoAFabricar);
@@ -16,7 +17,6 @@ void FabricasThread::run(){
     running = true;
     while (running)
     {
-        qInfo() << "Ejecutando " + id + "...";
         fabricando();
         QThread::sleep(1);
     }

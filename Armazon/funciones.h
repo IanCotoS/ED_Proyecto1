@@ -18,6 +18,7 @@ class Funciones
 public:
     // Declaración de funciones
     static QString crearArchivo(QString nombreArchivo, QString contenido);
+    static void crearFactura(QString nombreArchivo, QString * contenido);
     static QString retornarTextoArchivo(QString nombreArchivo);
     static void crearArchivoError(QString nombre, QString contenido);
     static QStringList devuelveNombresTxtCarpeta(QString pCarpeta);

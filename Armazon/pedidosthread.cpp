@@ -64,8 +64,10 @@ void PedidosThread::cargarEnMemoria(){
     const QString direccionEntrantes = "ArchivosDeTexto\\Pedidos\\Entrantes\\";
     QStringList nombresPedidos = Funciones::devuelveNombresTxtCarpeta(direccionEntrantes);
     if (!nombresPedidos.empty()){
+        qInfo() << "Ejecutando " + id + "...";
         for (int num = 0; num < nombresPedidos.size(); num++){
             const QString nombre = nombresPedidos[num];
+            qDebug() << nombre;
             QString str = Funciones::retornarTextoArchivo(direccionEntrantes + nombre);
             QStringList lineas = Funciones::separaSaltoLinea(str);
             if (validaDatos(lineas, str, nombre)){
@@ -94,7 +96,6 @@ void PedidosThread::run(){
     running = true;
     while (running)
     {
-        qInfo() << "Ejecutando " + id + "...";
         cargarEnMemoria();
         QThread::sleep(5);
     }

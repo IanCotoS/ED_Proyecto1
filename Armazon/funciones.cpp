@@ -34,6 +34,10 @@ QString Funciones::retornarTextoArchivo(QString pNombreArchivo){
     return texto;
 }
 
+void Funciones::crearFactura(QString nombre, QString * contenido){
+    Funciones::crearArchivo("ArchivosDeTexto\\Facturas\\" + nombre, *contenido);
+}
+
 void Funciones::crearArchivoError(QString nombre, QString contenido){
     Funciones::crearArchivo("ArchivosDeTexto\\Pedidos\\Defectuosos\\" + nombre, contenido);
     QFile::remove("ArchivosDeTexto\\Pedidos\\Entrantes\\"  + nombre);

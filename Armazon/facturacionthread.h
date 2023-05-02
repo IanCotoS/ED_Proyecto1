@@ -18,10 +18,10 @@ class FacturacionThread : public QThread
 public:
 
     // Constructor
-    FacturacionThread(QString id, Cola<Pedido>* colaAlistos){
+    FacturacionThread(QString id, Cola<Pedido>* colaFactura){
         running = false;
         this->id = id;
-        this->colaAlistos = colaAlistos;
+        this->colaFactura = colaFactura;
     }
 
     // Métodos Thread
@@ -33,7 +33,7 @@ private:
     // Atributos
     QString id;
     bool running;
-    Cola<Pedido> * colaAlistos;
+    Cola<Pedido> * colaFactura;
 
     // Métodos
     void realizarFactura();
