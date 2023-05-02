@@ -22,7 +22,7 @@ class FabricasThread : public QThread
 public:
 
     // Constructor
-    FabricasThread(QString id, Cola<Articulo>* colaEnFabrica){
+    FabricasThread(QString id, Cola<NodoArticulo>* colaEnFabrica){
         running = false;
         this->id = id;
         this->tiempoEnCola = 0;
@@ -39,7 +39,7 @@ private:
     QString id;
     int tiempoEnCola;
     bool running;
-    Cola<Articulo>* colaEnFabrica;
+    Cola<NodoArticulo>* colaEnFabrica;
 
     // Declaraciones de métodos
     void fabricando();

@@ -17,7 +17,7 @@ void ControlFabricasThread::mandarAFabricar()
                                         "\r\nInicio: " + Funciones::obtenerHoraString() +
                                          "\r\nFin en: " + QString::number(tmp->articulo->cantidadComparable
                                          * tmp->articulo->tiempoFabricacionSegundos) + " segundos";
-                        colaFabricaComodin->enqueue((*tmp->articulo));
+                        colaFabricaComodin->enqueue(*tmp);
                     }
                     else{
                         pedido.recibo += "\r\nCodigo:\t" + tmp->articulo->codigo + "\tFabricado en A" +
@@ -25,7 +25,7 @@ void ControlFabricasThread::mandarAFabricar()
                                          "\r\nInicio: " + Funciones::obtenerHoraString() +
                                          "\r\nFin en: " + QString::number(tmp->articulo->cantidadComparable
                                          * tmp->articulo->tiempoFabricacionSegundos) + " segundos";
-                        colaFabricaA->enqueue((*tmp->articulo));
+                        colaFabricaA->enqueue((*tmp));
                     }
                 }
                 else if (categoria == "B"){
@@ -35,7 +35,7 @@ void ControlFabricasThread::mandarAFabricar()
                                          "\r\nInicio: " + Funciones::obtenerHoraString() +
                                          "\r\nFin en: " + QString::number(tmp->articulo->cantidadComparable
                                          * tmp->articulo->tiempoFabricacionSegundos) + " segundos";
-                        colaFabricaComodin->enqueue((*tmp->articulo));
+                        colaFabricaComodin->enqueue((*tmp));
                     }
                     else{
                         pedido.recibo += "\r\nCodigo:\t" + tmp->articulo->codigo + "\tFabricado en B" +
@@ -43,7 +43,7 @@ void ControlFabricasThread::mandarAFabricar()
                                          "\r\nInicio: " + Funciones::obtenerHoraString() +
                                          "\r\nFin en: " + QString::number(tmp->articulo->cantidadComparable
                                          * tmp->articulo->tiempoFabricacionSegundos) + " segundos";
-                        colaFabricaB->enqueue((*tmp->articulo));
+                        colaFabricaB->enqueue((*tmp));
                     }
                 }
                 else{
@@ -52,7 +52,7 @@ void ControlFabricasThread::mandarAFabricar()
                                      "\r\nInicio: " + Funciones::obtenerHoraString() +
                                      "\r\nFin en: " + QString::number(tmp->articulo->cantidadComparable
                                          * tmp->articulo->tiempoFabricacionSegundos) + " segundos";
-                    colaFabricaC->enqueue((*tmp->articulo));
+                    colaFabricaC->enqueue((*tmp));
                 }
             }
             tmp = tmp->siguiente;

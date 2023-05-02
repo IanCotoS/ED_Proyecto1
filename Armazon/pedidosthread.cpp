@@ -76,6 +76,7 @@ void PedidosThread::cargarEnMemoria(){
                                               new Cliente(clienteNew->codigo, clienteNew->nombre, clienteNew->prioridad),
                                               articulosPedidos);
                     newPedido.recibo += "\r\nEn cola:\t" + Funciones::obtenerHoraString();
+                    qInfo() << newPedido.devuelveInfo();
                     if (clienteNew->prioridad == 10){
                         colaPedidosPrioridad->enqueue(newPedido);
                     }

@@ -9,5 +9,5 @@ Pedido::Pedido(int pNumero, Cliente* pCliente, ListaArticulos* pArticulos) :
 
 // Funciones Pedido
 QString Pedido::devuelveInfo(){
-    return (recibo);
+    return (QString::number(numero) + " " + cliente->devuelveInfo() + " " + articulos->devuelveInfo());
 }

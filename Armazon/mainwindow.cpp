@@ -66,10 +66,10 @@ MainWindow::MainWindow(QWidget *parent)
     colaFactura= new Cola<Pedido>();
 
     // Colas (fabrica)
-    colaFabricaA = new Cola<Articulo>();
-    colaFabricaB = new Cola<Articulo>();
-    colaFabricaC = new Cola<Articulo>();
-    colaFabricaComodin = new Cola<Articulo>();
+    colaFabricaA = new Cola<NodoArticulo>();
+    colaFabricaB = new Cola<NodoArticulo>();
+    colaFabricaC = new Cola<NodoArticulo>();
+    colaFabricaComodin = new Cola<NodoArticulo>();
 
     // Threads
     pedidosThread = new PedidosThread("Pedidos Thread", colaPedidosPrioridad, colaPedidosNormales, clientes, articulos);

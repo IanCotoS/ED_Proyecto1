@@ -9,16 +9,17 @@ void Balanceador::evaluaNormales()
             Pedido pedidoB= colaPedidoNormales->dequeue();
             qInfo() << pedidoB.devuelveInfo();
             pedidoB.recibo+="\nBalanceador: "+Funciones::obtenerHoraString();
-            Articulo* tmp=NULL;
+            NodoArticulo * tmp = pedidoB.articulos->primerNodo;
             for(int y=0;y<pedidoB.articulos->cantidad;y++) {
-                tmp=pedidoB.articulos->devuelveArticuloPos(y);
-                if (tmp->cantidadComparable-listaInventario->devuelveArticulo(tmp->codigo)->cantidad>=1){
-                    tmp->cantidadComparable=tmp->cantidadComparable-listaInventario->devuelveArticulo(tmp->codigo)->cantidad;
-                    listaInventario->devuelveArticulo(tmp->codigo)->cantidad=0;
+
+                if (tmp->articulo->cantidadComparable-listaInventario->devuelveArticulo(tmp->articulo->codigo)->cantidad>=1){
+                    tmp->articulo->cantidadComparable=tmp->articulo->cantidadComparable-listaInventario->devuelveArticulo(tmp->articulo->codigo)->cantidad;
+                    listaInventario->devuelveArticulo(tmp->articulo->codigo)->cantidad=0;
                 }
                 else{
-                    listaInventario->devuelveArticulo(tmp->codigo)->cantidad=listaInventario->devuelveArticulo(tmp->codigo)->cantidad-tmp->cantidad;
-                    tmp->cantidadComparable=0;
+                    listaInventario->devuelveArticulo(tmp->articulo->codigo)->cantidad=
+                        listaInventario->devuelveArticulo(tmp->articulo->codigo)->cantidad-tmp->articulo->cantidad;
+                    tmp->articulo->cantidadComparable=0;
                 }
                 if (pedidoB.articulos->estaListo()==true){
                     colaAlisto->enqueue(pedidoB);
@@ -26,6 +27,7 @@ void Balanceador::evaluaNormales()
                 else{
                     colaFabricando->enqueue(pedidoB);
                 }
+                tmp = tmp->siguiente;
             }
         }
     }
@@ -39,17 +41,17 @@ void Balanceador::evaluaPrioridad()
             Pedido pedidoB= colaPedidoPrioridad->dequeue();
             qInfo() << pedidoB.devuelveInfo();
             pedidoB.recibo+="\nBalanceador: "+Funciones::obtenerHoraString();
-            Articulo* tmp=NULL;
+            NodoArticulo * tmp = pedidoB.articulos->primerNodo;
             for(int y=0;y<pedidoB.articulos->cantidad;y++) {
-                tmp=pedidoB.articulos->devuelveArticuloPos(y);
 
-                if (tmp->cantidadComparable-listaInventario->devuelveArticulo(tmp->codigo)->cantidad>=1){
-                    tmp->cantidadComparable=tmp->cantidadComparable-listaInventario->devuelveArticulo(tmp->codigo)->cantidad;
-                    listaInventario->devuelveArticulo(tmp->codigo)->cantidad=0;
+                if (tmp->articulo->cantidadComparable-listaInventario->devuelveArticulo(tmp->articulo->codigo)->cantidad>=1){
+                    tmp->articulo->cantidadComparable=tmp->articulo->cantidadComparable-listaInventario->devuelveArticulo(tmp->articulo->codigo)->cantidad;
+                    listaInventario->devuelveArticulo(tmp->articulo->codigo)->cantidad=0;
                 }
                 else{
-                    listaInventario->devuelveArticulo(tmp->codigo)->cantidad=listaInventario->devuelveArticulo(tmp->codigo)->cantidad-tmp->cantidad;
-                    tmp->cantidadComparable=0;
+                    listaInventario->devuelveArticulo(tmp->articulo->codigo)->cantidad=
+                        listaInventario->devuelveArticulo(tmp->articulo->codigo)->cantidad-tmp->articulo->cantidad;
+                    tmp->articulo->cantidadComparable=0;
                 }
                 if (pedidoB.articulos->estaListo()==true){
                     colaAlisto->enqueue(pedidoB);
@@ -57,6 +59,7 @@ void Balanceador::evaluaPrioridad()
                 else{
                     colaFabricando->enqueue(pedidoB);
                 }
+                tmp = tmp->siguiente;
             }
         }
     }

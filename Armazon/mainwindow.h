@@ -42,10 +42,10 @@ public:
     Cola<Pedido> * colaFactura;
 
     // Colas de artículos (Fabrica)
-    Cola<Articulo> * colaFabricaA;
-    Cola<Articulo> * colaFabricaB;
-    Cola<Articulo> * colaFabricaC;
-    Cola<Articulo> * colaFabricaComodin;
+    Cola<NodoArticulo> * colaFabricaA;
+    Cola<NodoArticulo> * colaFabricaB;
+    Cola<NodoArticulo> * colaFabricaC;
+    Cola<NodoArticulo> * colaFabricaComodin;
 
     // Threads
     PedidosThread * pedidosThread;

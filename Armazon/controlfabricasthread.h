@@ -19,8 +19,8 @@ public:
 
     // Constructor
     ControlFabricasThread(QString id, Cola<Pedido>* colaParaFabricacion, Cola<Pedido>* colaFabricando,
-                          Cola<Articulo>* colaFabricaA, Cola<Articulo>* colaFabricaB,
-                          Cola<Articulo>* colaFabricaC, Cola<Articulo>* colaFabricaComodin){
+                          Cola<NodoArticulo>* colaFabricaA, Cola<NodoArticulo>* colaFabricaB,
+                          Cola<NodoArticulo>* colaFabricaC, Cola<NodoArticulo>* colaFabricaComodin){
         running = false;
         this->id = id;
         this->colaParaFabricacion = colaParaFabricacion;
@@ -42,10 +42,10 @@ private:
     bool running;
     Cola<Pedido> * colaParaFabricacion;
     Cola<Pedido>* colaFabricando;
-    Cola<Articulo>* colaFabricaA;
-    Cola<Articulo>* colaFabricaB;
-    Cola<Articulo>* colaFabricaC;
-    Cola<Articulo>* colaFabricaComodin;
+    Cola<NodoArticulo>* colaFabricaA;
+    Cola<NodoArticulo>* colaFabricaB;
+    Cola<NodoArticulo>* colaFabricaC;
+    Cola<NodoArticulo>* colaFabricaComodin;
 
     // Declaraciones de métodos
     void mandarAFabricar();

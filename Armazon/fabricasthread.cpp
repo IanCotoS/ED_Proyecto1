@@ -4,11 +4,10 @@
 void FabricasThread::fabricando()
 {
     if (!colaEnFabrica->isEmpty()){
-        Articulo articuloFabricando = colaEnFabrica->dequeue();
-        int tiempoAFabricar = articuloFabricando.tiempoFabricacionSegundos * articuloFabricando.cantidadComparable;
-        qInfo() << articuloFabricando.devuelveInfo();
+        NodoArticulo articuloFabricando = colaEnFabrica->dequeue();
+        int tiempoAFabricar = articuloFabricando.articulo->tiempoFabricacionSegundos * articuloFabricando.articulo->cantidadComparable;
         QThread::sleep(tiempoAFabricar);
-        articuloFabricando.cantidadComparable = 0;
+        articuloFabricando.articulo->cantidadComparable = 0;
         qInfo() << articuloFabricando.devuelveInfo();
     }
 }
