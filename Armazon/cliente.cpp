@@ -119,6 +119,7 @@ bool ListaClientes::cargarEnMemoria() {
         }
         insertarAlFinal(new Cliente(codigo, nombre, prioridadStr.toInt()));
     }
+    this->devuelveInfo();
     return true;
 }
 

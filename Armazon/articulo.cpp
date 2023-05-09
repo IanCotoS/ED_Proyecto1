@@ -170,5 +170,6 @@ bool ListaArticulos::cargarEnMemoria(){
         }
         this->insertarAlFinal(new Articulo(codigo, cantidad.toInt(), tiempo.toInt(), categoria, ubicacion));
     }
+    qDebug() << this->devuelveInfo();
     return true;
 }
